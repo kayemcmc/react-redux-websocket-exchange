@@ -16,6 +16,13 @@
 		src="https://gallery.mailchimp.com/fee238bfe84b47c290a863338/images/965ab7ea-b327-44fb-a1db-0d4a1ca8a46a.png">
 </h1>
 
+<h1 align="center">
+	<img
+		width="900"
+		alt="Exchange"
+		src="https://gallery.mailchimp.com/fee238bfe84b47c290a863338/images/61d28998-915f-4005-bf28-274411404f80.png">
+</h1>
+
 To install dependencies you can run:
 
 ## `npm i`
