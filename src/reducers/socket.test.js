@@ -1,4 +1,5 @@
 import * as feedListActions from "./socket";
+import reducer from "./socket";
 
 //Actions
 
@@ -47,5 +48,19 @@ describe("Coin Feed List Action", () => {
       data
     };
     expect(feedListActions.socketMessage(data)).toEqual(expectedAction);
+  });
+});
+
+//reducer
+
+describe("socketReducer", () => {
+  it("should handle SOCKET_MESSAGE", () => {
+    const data = mockCoin;
+    expect(
+      reducer({
+        readyState: true,
+        feed: data
+      })
+    );
   });
 });
