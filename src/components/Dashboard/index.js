@@ -3,9 +3,14 @@ import "./Dashboard.css";
 import { connect } from "react-redux";
 import { Table } from "antd";
 import Widget from "../Widget";
+import WidgetSmall from "../WidgetSmall";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { initializeSocket } from "../../reducers/socket.js";
+
+import neo from "../../assets/img/1024.png";
+import monero from "../../assets/img/monero-symbol-1280.png";
 
 const columns = [
   {
@@ -34,14 +39,33 @@ const columns = [
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      binanceData: []
+    };
+    this.binanceTrades = this.binanceTrades.bind(this);
   }
   componentDidMount() {
     this.props.initializeSocket();
+    this.binanceTrades();
+  }
+
+  binanceTrades() {
+    axios({
+      method: "get",
+      url:
+        "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/24hr"
+    }).then(data => {
+      this.setState({ binanceData: data });
+    });
+    const mainBNB = ["BNB"];
+    let pos = this.state.binanceData.indexOf(mainBNB);
+    console.log(pos);
   }
 
   render() {
+    console.log("DATTTTAAA", this.state.binanceData);
     return (
-      <div className="container pt-4">
+      <div className="container pt-4 mt-4">
         <div className="row">
           <div className="col-md-6">
             <div className="box">
@@ -58,9 +82,44 @@ class Dashboard extends React.Component {
           <div className="col-md-6">
             <div className="row">
               <div className="col-md-6">
-                <Widget />
+                <Widget
+                  style={{ backgroundColor: "rgb(237, 203, 43)" }}
+                  symbol="BNB"
+                  name="Binance Coin"
+                  usd="$10.51"
+                  eur="€9.18"
+                  jpy="¥1,203"
+                />
               </div>
-              <div className="col-md-6" />
+              <div className="col-md-6">
+                <Widget
+                  style={{ backgroundColor: "#30d9f9" }}
+                  symbol="ETH"
+                  name="Ethereum"
+                  usd="$225.86
+                "
+                  eur="€194.68"
+                  jpy="¥25,654"
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <WidgetSmall
+                  url={neo}
+                  title="NEO Coin"
+                  btcprice="0.04"
+                  percentage="1.35%"
+                />
+              </div>
+              <div className="col-md-6">
+                <WidgetSmall
+                  url={monero}
+                  title="Monero"
+                  btcprice="0.017"
+                  percentage="1.35%"
+                />
+              </div>
             </div>
           </div>
         </div>

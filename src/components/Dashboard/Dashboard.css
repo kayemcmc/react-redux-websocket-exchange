@@ -16,8 +16,14 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .ant-table-row td {
+  .ant-table {
     font-size: 12px;
-    padding: 5px;
+  }
+  .ant-table-row td {
+    font-size: 9px;
+    padding: 0px;
+  }
+  .box {
+    width: 360px;
   }
 }

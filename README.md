@@ -1,4 +1,4 @@
-<h1>React Redux Exchange that calls websockets and api to rin real time data feed</h1>
+<h2>React Redux Exchange that calls websockets and api to render real time data feed</h2>
 
 To install dependencies you can run:
 
