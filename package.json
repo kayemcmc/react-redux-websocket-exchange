@@ -3,9 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.10.0",
+    "axios": "^0.18.0",
+    "node-binance-api": "^0.8.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-loadable": "^5.5.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.4",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "rxjs": "^6.3.3",
+    "socket.io-client": "^2.1.1",
+    "uuid": "^3.3.2",
+    "ws": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

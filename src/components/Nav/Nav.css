@@ -1,0 +1,7 @@
+.site-header {
+  box-shadow: 0 1px 0 #262626;
+  background-image: -webkit-linear-gradient(top, #222, #191919);
+  background-color: #191919;
+  height: 80px;
+  color: #edcb2b;
+}

@@ -1,0 +1,23 @@
+.box {
+  margin-bottom: 20px;
+  background: #1f1f1f;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(142, 139, 133, 0.32);
+  padding: 0px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+
+  padding: 20px;
+}
+
+.ant-table-row td {
+  padding: 10px !important;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+  .ant-table-row td {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
