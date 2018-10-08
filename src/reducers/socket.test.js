@@ -1,16 +1,15 @@
-import configureStore from "redux-mock-store";
+import * as feedListActions from "./socket";
 
-// Actions to be tested
-import reducer from "./socket";
-import intitialState from "./socket";
+//test redux actions
 
-const mockStore = configureStore();
-const store = mockStore();
-
-describe("intitialState", () => {
-  test("is correct", () => {
-    const action = { type: "dummy_action" };
-
-    expect(selectReducer(undefined, action)).toMatchSnapshot();
+const mockCoin = [{ a: 1 }];
+describe("Coin Feed List Action", () => {
+  it("should create an action to receive the con feed from binance", () => {
+    const data = mockCoin;
+    const expectedAction = {
+      type: feedListActions.SOCKET_MESSAGE,
+      data
+    };
+    expect(feedListActions.socketMessage(data)).toEqual(expectedAction);
   });
 });

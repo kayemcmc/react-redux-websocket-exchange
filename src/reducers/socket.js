@@ -2,7 +2,7 @@ const SOCKET_CONNECTION_INIT = "SOCKET_CONNECTION_INIT";
 const SOCKET_CONNECTION_SUCCESS = "SOCKET_CONNECTION_SUCCESS";
 const SOCKET_CONNECTION_ERROR = "SOCKET_CONNECTION_ERROR";
 const SOCKET_CONNECTION_CLOSED = "SOCKET_CONNECTION_CLOSED";
-const SOCKET_MESSAGE = "SOCKET_MESSAGE";
+export const SOCKET_MESSAGE = "SOCKET_MESSAGE";
 const SOCKET_ORDERBOOK = "SOCKET_ORDERBOOK";
 
 export const initialState = {
@@ -112,7 +112,7 @@ function socketConnectionClosed() {
   };
 }
 
-function socketMessage(data) {
+export function socketMessage(data) {
   return {
     type: SOCKET_MESSAGE,
     data
