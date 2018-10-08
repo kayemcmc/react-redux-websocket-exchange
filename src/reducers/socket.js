@@ -3,12 +3,14 @@ const SOCKET_CONNECTION_SUCCESS = "SOCKET_CONNECTION_SUCCESS";
 const SOCKET_CONNECTION_ERROR = "SOCKET_CONNECTION_ERROR";
 const SOCKET_CONNECTION_CLOSED = "SOCKET_CONNECTION_CLOSED";
 const SOCKET_MESSAGE = "SOCKET_MESSAGE";
+const SOCKET_ORDERBOOK = "SOCKET_ORDERBOOK";
 
 const initialState = {
   connected: false,
   readyState: false,
   socket: null,
-  feed: []
+  feed: [],
+  orderBook: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -36,18 +38,16 @@ export default function reducer(state = initialState, action = {}) {
       });
 
     case SOCKET_MESSAGE:
-      //  return handleIncomingMessage(action.data), state;
       return Object.assign({}, state, {
         readyState: true,
         feed: action.data
       });
 
-    // case SOCKET_MESSAGE:
-    //   //  return handleIncomingMessage(action.data), state;
-    //   return Object.assign({}, state, {
-    //     readyState: true,
-    //     feed: action.data
-    //   };
+    case SOCKET_ORDERBOOK:
+      return Object.assign({}, state, {
+        readyState: true,
+        orderBook: action.data
+      });
 
     default:
       return state;
@@ -57,8 +57,10 @@ export default function reducer(state = initialState, action = {}) {
 export function initializeSocket() {
   return dispatch => {
     const socket = new WebSocket(
-      "wss://stream.binance.com:9443/ws/!miniTicker@arr"
+      "wss://stream.binance.com:9443/ws/!ticker@arr"
     );
+
+    const socketOrderBook = new WebSocket(`wss://stream.binance.com:9443/ws/`);
     dispatch(socketConnectionInit(socket));
 
     socket.onopen = function() {
@@ -72,6 +74,11 @@ export function initializeSocket() {
     socket.onmessage = function(event) {
       let List = JSON.parse(event.data);
       dispatch(socketMessage(List));
+    };
+
+    socketOrderBook.onmessage = function(event) {
+      let List = JSON.parse(event.data);
+      dispatch(socketOrderBook(List));
     };
 
     socket.onclose = function() {
@@ -110,4 +117,11 @@ function socketMessage(data) {
     type: SOCKET_MESSAGE,
     data
   };
+
+  function socketOrderBook(data) {
+    return {
+      type: SOCKET_ORDERBOOK,
+      data
+    };
+  }
 }

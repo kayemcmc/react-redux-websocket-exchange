@@ -42,24 +42,9 @@ class Dashboard extends React.Component {
     this.state = {
       binanceData: []
     };
-    this.binanceTrades = this.binanceTrades.bind(this);
   }
   componentDidMount() {
     this.props.initializeSocket();
-    this.binanceTrades();
-  }
-
-  binanceTrades() {
-    axios({
-      method: "get",
-      url:
-        "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/24hr"
-    }).then(data => {
-      this.setState({ binanceData: data });
-    });
-    const mainBNB = ["BNB"];
-    let pos = this.state.binanceData.indexOf(mainBNB);
-    console.log(pos);
   }
 
   render() {
