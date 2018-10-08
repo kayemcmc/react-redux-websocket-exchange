@@ -2,6 +2,7 @@ import React from "react";
 import "./Dashboard.css";
 import { connect } from "react-redux";
 import { Table } from "antd";
+import Widget from "../Widget";
 import { Link } from "react-router-dom";
 
 import { initializeSocket } from "../../reducers/socket.js";
@@ -54,7 +55,14 @@ class Dashboard extends React.Component {
               />
             </div>
           </div>
-          <div className="col-md-6" />
+          <div className="col-md-6">
+            <div className="row">
+              <div className="col-md-6">
+                <Widget />
+              </div>
+              <div className="col-md-6" />
+            </div>
+          </div>
         </div>
       </div>
     );
