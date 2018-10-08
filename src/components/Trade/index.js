@@ -55,7 +55,7 @@ class Trade extends React.Component {
       <Fragment>
         <div className="container">
           <div className="row pt-4 mt-4">
-            <div className="text-center">
+            <div className="" style={{ width: "100%" }}>
               <h2 className="trade-title">
                 Latest Trade History for{" "}
                 <b className="text-white">{this.props.match.params.symbol}</b>{" "}
