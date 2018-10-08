@@ -1,5 +1,7 @@
 <h2>React Redux Exchange that calls websockets and api to render real time data feed</h2>
 
+<a href="https://binance-app-ca561.firebaseapp.com/">https://binance-app-ca561.firebaseapp.com/ </a>
+
 To install dependencies you can run:
 
 ## `npm i`
