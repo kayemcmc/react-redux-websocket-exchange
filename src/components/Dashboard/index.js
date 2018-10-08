@@ -5,7 +5,6 @@ import { Table } from "antd";
 import Widget from "../Widget";
 import WidgetSmall from "../WidgetSmall";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import { initializeSocket } from "../../reducers/socket.js";
 

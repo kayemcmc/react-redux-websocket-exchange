@@ -6,7 +6,7 @@ export default ({ url, title, btcunit, btcprice, percentage }) => {
     <div className="box box-body bg-hexagons-white pull-up">
       <div className="media align-items-center p-0">
         <div className="text-center pr-3">
-          <img src={url} style={{ width: "25px" }} />
+          <img src={url} style={{ width: "25px" }} alt="cryptologo" />
         </div>
         <div>
           <h3 className="no-margin">{title}</h3>

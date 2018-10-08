@@ -7,11 +7,7 @@ import { initializeSocket } from "../../reducers/socket.js";
 
 const columns = [
   {
-    title: "Symbol",
-    dataIndex: "s"
-  },
-  {
-    title: "Order Trade Id",
+    title: "Id",
     dataIndex: "a"
   },
   {
@@ -38,13 +34,12 @@ class Trade extends React.Component {
 
     axios({
       method: "get",
-      url: `https://cors-anywhere.herokuapp.com/https://www.binance.com/api/v1/aggTrades?limit=100&symbol=${
+      url: `https://cors-anywhere.herokuapp.com/https://www.binance.com/api/v1/aggTrades?limit=50&symbol=${
         this.props.match.params.symbol
       }`
     }).then(data => {
-      this.setState({ orderData: data });
+      this.setState({ orderData: data.data });
     });
-    this.setState({ loading: false });
   }
 
   render() {
@@ -62,30 +57,30 @@ class Trade extends React.Component {
           <div className="row pt-4 mt-4">
             <div className="text-center">
               <h2 className="trade-title">
-                Detailed Trade History for{" "}
+                Latest Trade History for{" "}
                 <b className="text-white">{this.props.match.params.symbol}</b>{" "}
                 Pair
               </h2>
             </div>
           </div>
           <div className="row pt-4">
-            <div className="col-md-8">
+            <div className="col-md-5">
               <div className="box">
-                {this.state.loading === false ? (
-                  <Table
-                    rowKey={record => record.s}
-                    columns={columns}
-                    dataSource={this.state.data.data}
-                    size="small"
-                    pagination={false}
-                    style={{ color: "white" }}
-                  />
-                ) : (
-                  "Loading"
-                )}
+                <Table
+                  rowKey={record => record.s}
+                  columns={columns}
+                  dataSource={this.state.orderData}
+                  size="small"
+                  pagination={false}
+                  style={{ color: "white" }}
+                />
               </div>
             </div>
-            <div className="col-md-4">two</div>
+            <div className="col-md-7">
+              <div className="box text-white">
+                Fancy interactive graphs in the works <span>😊</span>
+              </div>
+            </div>
           </div>
         </div>
       </Fragment>

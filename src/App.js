@@ -3,15 +3,13 @@ import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Trade from "./components/Trade";
-import { Switch, Route, withRouter } from "react-router-dom";
-import Loadable from "react-loadable";
+import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
       <div>
         <Nav />
-
         <Switch>
           <Route exact path="/" component={props => <Home />} />
           <Route path="/dashboard" component={props => <Dashboard />} />
@@ -22,4 +20,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;

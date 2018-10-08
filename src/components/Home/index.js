@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { initializeSocket } from "../../reducers/socket.js";
@@ -7,9 +7,6 @@ import computer from "../../assets/img/happy-computer.png";
 import "./Home.css";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.initializeSocket();
   }
@@ -18,8 +15,8 @@ class Home extends Component {
     const { socket } = this.props;
     const online = socket.connected ? (
       <div className="connected">
-        <img src={computer} alt="happy-computer" style={{ width: "15%" }} /> You
-        are now connected to Binance
+        <img src={computer} alt="success" style={{ width: "15%" }} /> You are
+        now connected to Binance
       </div>
     ) : (
       <div className="connected">Connecting to Binance stream...</div>
@@ -43,7 +40,7 @@ class Home extends Component {
             </div>
 
             <div className="col-md-6 home-img">
-              <img src={homeimg} alt="home-image" style={{ width: "450px" }} />
+              <img src={homeimg} alt="blockchain" style={{ width: "450px" }} />
             </div>
           </div>
         </div>

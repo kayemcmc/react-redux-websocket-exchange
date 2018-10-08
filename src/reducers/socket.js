@@ -5,7 +5,7 @@ const SOCKET_CONNECTION_CLOSED = "SOCKET_CONNECTION_CLOSED";
 const SOCKET_MESSAGE = "SOCKET_MESSAGE";
 const SOCKET_ORDERBOOK = "SOCKET_ORDERBOOK";
 
-const initialState = {
+export const initialState = {
   connected: false,
   readyState: false,
   socket: null,
