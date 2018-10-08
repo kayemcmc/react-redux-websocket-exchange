@@ -1,6 +1,6 @@
-const SOCKET_CONNECTION_INIT = "SOCKET_CONNECTION_INIT";
-const SOCKET_CONNECTION_SUCCESS = "SOCKET_CONNECTION_SUCCESS";
-const SOCKET_CONNECTION_ERROR = "SOCKET_CONNECTION_ERROR";
+export const SOCKET_CONNECTION_INIT = "SOCKET_CONNECTION_INIT";
+export const SOCKET_CONNECTION_SUCCESS = "SOCKET_CONNECTION_SUCCESS";
+export const SOCKET_CONNECTION_ERROR = "SOCKET_CONNECTION_ERROR";
 const SOCKET_CONNECTION_CLOSED = "SOCKET_CONNECTION_CLOSED";
 export const SOCKET_MESSAGE = "SOCKET_MESSAGE";
 const SOCKET_ORDERBOOK = "SOCKET_ORDERBOOK";
@@ -87,20 +87,20 @@ export function initializeSocket() {
   };
 }
 
-function socketConnectionInit(socket) {
+export function socketConnectionInit(socket) {
   return {
     type: SOCKET_CONNECTION_INIT,
     socket
   };
 }
 
-function socketConnectionSuccess() {
+export function socketConnectionSuccess() {
   return {
     type: SOCKET_CONNECTION_SUCCESS
   };
 }
 
-function socketConnectionError() {
+export function socketConnectionError() {
   return {
     type: SOCKET_CONNECTION_ERROR
   };
