@@ -5,6 +5,12 @@ import { Table } from "antd";
 import axios from "axios";
 import { initializeSocket } from "../../reducers/socket.js";
 
+import ReactHighcharts from "react-highcharts";
+import theme from "../Chart/highchartsTheme";
+import highchartsConfig from "../Chart/highchartsConfig";
+
+ReactHighcharts.Highcharts.setOptions(theme());
+
 const columns = [
   {
     title: "Id",
@@ -77,8 +83,11 @@ class Trade extends React.Component {
               </div>
             </div>
             <div className="col-md-7">
-              <div className="box text-white">
+              <div className="box text-white text-center">
                 Fancy interactive graphs in the works <span>😊</span>
+                <div className="pt-3">
+                  <ReactHighcharts config={highchartsConfig.call(this)} />
+                </div>
               </div>
             </div>
           </div>
