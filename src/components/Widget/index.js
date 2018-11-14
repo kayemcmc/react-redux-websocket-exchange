@@ -18,21 +18,21 @@ export default ({ style, symbol, name, usd, jpy, eur }) => {
           <li className="br-1 border-dark">
             <div className="text-black">USD</div>
             <small className="font-size-18">
-              <span className="text-black">{usd}</span>
+              <span className="text-black">${usd}</span>
             </small>
           </li>
 
           <li className="br-1 border-dark">
             <div className="text-black">EUR</div>
             <small className="font-size-18">
-              <span className="text-black">{eur}2</span>
+              <span className="text-black">€{eur}</span>
             </small>
           </li>
 
           <li>
             <div className="text-black">JPY</div>
             <small className="font-size-18">
-              <span className="text-black">{jpy}</span>
+              <span className="text-black">¥{jpy}</span>
             </small>
           </li>
         </ul>

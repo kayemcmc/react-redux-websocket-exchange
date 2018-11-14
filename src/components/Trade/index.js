@@ -35,7 +35,7 @@ class Trade extends React.Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     let symbol = this.props.match.params.symbol.toLowerCase();
 
     axios({

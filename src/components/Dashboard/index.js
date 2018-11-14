@@ -7,6 +7,7 @@ import WidgetSmall from "../WidgetSmall";
 import { Link } from "react-router-dom";
 
 import { initializeSocket } from "../../reducers/socket.js";
+import axios from "axios";
 
 import neo from "../../assets/img/1024.png";
 import monero from "../../assets/img/monero-symbol-1280.png";
@@ -39,15 +40,40 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      binanceData: []
+      binanceData: [],
+      cryptos: []
     };
   }
   componentDidMount() {
     this.props.initializeSocket();
+    this.fetchMultiSymbols();
   }
 
+  fetchMultiSymbols = () => {
+    axios
+      .get(
+        "https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,BNB,NEO,XMR&tsyms=BTC,USD,EUR,JPY"
+      )
+      .then(res => {
+        const cryptos = res.data;
+        console.log(cryptos);
+        this.setState({ cryptos: cryptos });
+      });
+  };
+
   render() {
-    console.log("DATTTTAAA", this.state.binanceData);
+    const alternatingColor = ["rgb(237, 203, 43)", "#30d9f9"];
+    const widgetItem = Object.keys(this.state.cryptos).map((key, index) => (
+      <Widget
+        style={{
+          backgroundColor: alternatingColor[index % alternatingColor.length]
+        }}
+        symbol={key}
+        usd={this.state.cryptos[key].USD}
+        eur={this.state.cryptos[key].EUR}
+        jpy={this.state.cryptos[key].JPY}
+      />
+    ));
     return (
       <div className="container pt-4 mt-4">
         <div className="row">
@@ -64,28 +90,8 @@ class Dashboard extends React.Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="row">
-              <div className="col-md-6">
-                <Widget
-                  style={{ backgroundColor: "rgb(237, 203, 43)" }}
-                  symbol="BNB"
-                  name="Binance Coin"
-                  usd="$10.51"
-                  eur="€9.18"
-                  jpy="¥1,203"
-                />
-              </div>
-              <div className="col-md-6">
-                <Widget
-                  style={{ backgroundColor: "#30d9f9" }}
-                  symbol="ETH"
-                  name="Ethereum"
-                  usd="$225.86
-                "
-                  eur="€194.68"
-                  jpy="¥25,654"
-                />
-              </div>
+            <div className="d-flex flex-wrap justify-content-between">
+              {widgetItem}
             </div>
             <div className="row">
               <div className="col-md-6">

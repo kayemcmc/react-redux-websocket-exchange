@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.10.0",
     "axios": "^0.18.0",
+    "bignumber": "^1.1.0",
     "node-binance-api": "^0.8.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -20,6 +21,7 @@
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.3.3",
     "socket.io-client": "^2.1.1",
+    "styled-components": "^4.1.1",
     "uuid": "^3.3.2",
     "ws": "^6.1.0"
   },

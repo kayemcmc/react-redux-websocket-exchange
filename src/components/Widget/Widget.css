@@ -25,3 +25,7 @@ ul.flexbox {
 .bb-1 {
   border-bottom: 1px solid #585858;
 }
+
+.border-dark {
+  width: 170px;
+}
