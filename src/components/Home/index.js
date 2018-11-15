@@ -22,7 +22,7 @@ class Home extends Component {
       <div className="connected">Connecting to Binance stream...</div>
     );
     return (
-      <div>
+      <div data-test="home-display">
         <div className="container">
           <div className="row">
             <div className="col-md-6 home-copy">
@@ -34,7 +34,9 @@ class Home extends Component {
               {online}
               <div>
                 <Link to="/dashboard">
-                  <button className="btn primary">Start trading</button>
+                  <button className="btn primary" data-test="button-display">
+                    Start trading
+                  </button>
                 </Link>
               </div>
             </div>

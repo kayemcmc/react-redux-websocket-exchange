@@ -36,7 +36,7 @@ class Trade extends React.Component {
   }
 
   async componentDidMount() {
-    let symbol = this.props.match.params.symbol.toLowerCase();
+    // let symbol = this.props.match.params.symbol.toLowerCase();
 
     axios({
       method: "get",
@@ -84,7 +84,10 @@ class Trade extends React.Component {
             </div>
             <div className="col-md-7">
               <div className="box text-white text-center">
-                Fancy interactive graphs in the works <span>😊</span>
+                Fancy interactive graphs in the works{" "}
+                <span role="img" aria-label="emoji">
+                  😊
+                </span>
                 <div className="pt-3">
                   <ReactHighcharts config={highchartsConfig.call(this)} />
                 </div>

@@ -11,8 +11,8 @@ class App extends Component {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={props => <Home />} />
-          <Route path="/dashboard" component={props => <Dashboard />} />
+          <Route exact path="/" component={Home} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/trade/:symbol" component={Trade} />
         </Switch>
       </div>

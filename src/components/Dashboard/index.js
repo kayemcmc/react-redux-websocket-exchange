@@ -1,14 +1,15 @@
 import React from "react";
-import "./Dashboard.css";
 import { connect } from "react-redux";
 import { Table } from "antd";
-import Widget from "../Widget";
-import WidgetSmall from "../WidgetSmall";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { initializeSocket } from "../../reducers/socket.js";
-import axios from "axios";
 
+import "./Dashboard.css";
+import Widget from "../Widget";
+import WidgetSmall from "../WidgetSmall";
+import BinanceChart from "../Chart/BinanceChart";
 import neo from "../../assets/img/1024.png";
 import monero from "../../assets/img/monero-symbol-1280.png";
 
@@ -41,12 +42,14 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       binanceData: [],
-      cryptos: []
+      cryptos: [],
+      btcHistorical: null
     };
   }
   componentDidMount() {
     this.props.initializeSocket();
     this.fetchMultiSymbols();
+    this.fetchHistoricalBTC();
   }
 
   fetchMultiSymbols = () => {
@@ -56,18 +59,32 @@ class Dashboard extends React.Component {
       )
       .then(res => {
         const cryptos = res.data;
-        console.log(cryptos);
+        console.log("Cryptos", cryptos);
         this.setState({ cryptos: cryptos });
       });
   };
 
+  fetchHistoricalBTC = () => {
+    axios
+      .get(
+        "https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=30&aggregate=3&e=CCCAGG"
+      )
+      .then(res => {
+        const btcHistorical = res.data;
+        this.setState({ btcHistorical: btcHistorical.Data });
+      });
+  };
+
   render() {
+    const btcHistorical = this.state;
+    console.log(btcHistorical);
     const alternatingColor = ["rgb(237, 203, 43)", "#30d9f9"];
     const widgetItem = Object.keys(this.state.cryptos).map((key, index) => (
       <Widget
         style={{
           backgroundColor: alternatingColor[index % alternatingColor.length]
         }}
+        key={key}
         symbol={key}
         usd={this.state.cryptos[key].USD}
         eur={this.state.cryptos[key].EUR}
@@ -75,10 +92,10 @@ class Dashboard extends React.Component {
       />
     ));
     return (
-      <div className="container pt-4 mt-4">
+      <div className="container pt-4 mt-4" data-test="dashboard-display">
         <div className="row">
           <div className="col-md-6">
-            <div className="box">
+            <div className="box" data-test="crypto-container">
               <Table
                 rowKey={record => record.s}
                 columns={columns}
@@ -90,6 +107,7 @@ class Dashboard extends React.Component {
             </div>
           </div>
           <div className="col-md-6">
+            <BinanceChart charData={btcHistorical} />
             <div className="d-flex flex-wrap justify-content-between">
               {widgetItem}
             </div>
